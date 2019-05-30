@@ -1,0 +1,70 @@
+<div class="row h-100">
+        <div class="col-12 col-sm-8 px-0 mx-auto my-auto" style="max-width: 600px;">
+            <div class="card shadow-lg">
+                <div class="card-header px-5"><strong>Inscription</strong></div>
+                <div class="card-body px-4">
+                    <div *ngIf="errorSignUp" class="alert alert-warning" role="alert">{{errorSignUp}}</div>
+                    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+                        <div class="form-row mb-3">
+                            <div class="col-6">
+                                <input formControlName="lastName" type="text" class="form-control" placeholder="nom"
+                                [ngClass]="{'is-invalid': (lastNameCtrl.dirty || submitted) && lastNameCtrl.errors, 'is-valid': lastNameCtrl.dirty && !lastNameCtrl.errors}">
+                                <div *ngIf="lastNameCtrl.errors" class="invalid-feedback">
+                                    <div *ngIf="submitted && lastNameCtrl.errors.required">champ obligatoire</div>
+                                    <div *ngIf="lastNameCtrl.errors.pattern">saisir au moins 2 lettres</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <input formControlName="firstName" type="text" class="form-control" placeholder="prénom"
+                                [ngClass]="{'is-invalid': (firstNameCtrl.dirty || submitted) && firstNameCtrl.errors, 'is-valid': firstNameCtrl.dirty && !firstNameCtrl.errors}">
+                                <div *ngIf="firstNameCtrl.errors" class="invalid-feedback">
+                                    <div *ngIf="submitted && firstNameCtrl.errors.required">champ obligatoire</div>
+                                    <div *ngIf="firstNameCtrl.errors.pattern">saisir au moins 2 lettres</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input formControlName="pseudo" type="text" class="form-control" placeholder="pseudo"
+                            [ngClass]="{'is-invalid': (pseudoCtrl.dirty || submitted) && pseudoCtrl.errors, 'is-valid': pseudoCtrl.dirty && !pseudoCtrl.errors}">
+                            <div *ngIf="pseudoCtrl.errors" class="invalid-feedback">
+                                <div *ngIf="submitted && pseudoCtrl.errors.required">champ obligatoire</div>
+                                <div *ngIf="pseudoCtrl.errors.pattern">saisir au moins 2 lettres</div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                            </div>
+                            <input formControlName="email" type="email" class="form-control" placeholder="email"
+                            [ngClass]="{'is-invalid': (emailCtrl.dirty || submitted) && emailCtrl.errors, 'is-valid': emailCtrl.dirty && !emailCtrl.errors}">
+                            <div *ngIf="emailCtrl.errors" class="invalid-feedback">
+                                <div *ngIf="submitted && emailCtrl.errors.required">champ obligatoire</div>
+                                <div *ngIf="emailCtrl.errors.pattern">email invalide</div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <input formControlName="password" type="password" class="form-control" placeholder="password"
+                            [ngClass]="{'is-invalid': (passwordCtrl.dirty || submitted) && passwordCtrl.errors, 'is-valid': passwordCtrl.dirty && !passwordCtrl.errors}">
+                            <div *ngIf="passwordCtrl.errors" class="invalid-feedback">
+                                <div *ngIf="submitted && passwordCtrl.errors.required">champ obligatoire</div>
+                                <div *ngIf="passwordCtrl.errors.pattern">saisir au moins 8 caractères alphanumériques</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">S'inscrire</button>
+                        </div>
+                    </form>
+                    <div class="pt-3 border-top">
+                        Vous avez déjà un compte! <a [routerLink]="['/' + global.domainAppUrl + '/connexion']">se connecter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
