@@ -5,7 +5,6 @@ import { NgModule, Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { UserModule } from './module/user/user.module';
 
 // Components
@@ -25,7 +24,6 @@ import { UserHomeComponent } from './component/user-home/user-home.component';
     ],
     imports: [
         AppRoutingModule,
-        NgbModule,
         UserModule,
         BrowserModule,
         FormsModule,

@@ -5,7 +5,11 @@ import { InscriptionComponent } from './component/inscription/inscription.compon
 import { ConnectionComponent } from './component/connection/connection.component';
 import { HomeComponent } from './component/home/home.component';
 import { UserHomeComponent } from './component/user-home/user-home.component';
+
 import { GlobalService } from './common/global.service';
+
+import { IsAuthenticatedGuard } from './module/user/guard/is-authenticated.guard';
+import { IsNotAuthenticatedGuard } from './module/user/guard/is-not-authenticated.guard';
 
 const global = new GlobalService();
 const routes: Routes = [
@@ -15,15 +19,24 @@ const routes: Routes = [
     },
     {
         path: `${global.domainAppUrl}/inscription`,
-        component: InscriptionComponent
+        component: InscriptionComponent,
+        canActivate: [
+            IsNotAuthenticatedGuard
+        ]
     },
     {
         path: `${global.domainAppUrl}/connexion`,
-        component: ConnectionComponent
+        component: ConnectionComponent,
+        canActivate: [
+            IsNotAuthenticatedGuard
+        ]
     },
     {
-        path: `${global.domainAppUrl}/user/{id}/home`,
-        component: UserHomeComponent
+        path: `${global.domainAppUrl}/user/:id/accueil`,
+        component: UserHomeComponent,
+        canActivate: [
+            IsAuthenticatedGuard
+        ]
     },
     {
         path: '**',
