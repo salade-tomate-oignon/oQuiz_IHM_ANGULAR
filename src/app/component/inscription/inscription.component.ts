@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { User } from 'src/app/module/user/model/user';
-import { Subscription } from 'rxjs';
-import { UserService } from 'src/app/module/user/service/user.service';
-import { GlobalService } from 'src/app/common/global.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
+import { User } from 'src/app/module/user/model/user';
+import { GlobalService } from 'src/app/common/global.service';
+import { UserService } from 'src/app/module/user/service/user.service';
 
 @Component({
     selector: 'app-inscription',
@@ -14,11 +15,6 @@ import { Router } from '@angular/router';
 
 export class InscriptionComponent implements OnInit, OnDestroy {
     signUpForm: FormGroup;
-    firstNameCtrl: any;
-    lastNameCtrl: any;
-    pseudoCtrl: any;
-    emailCtrl: any;
-    passwordCtrl: any;
     signUpSubscription: Subscription;
     errorSignUp: string;
     submitted: boolean;
@@ -36,11 +32,6 @@ export class InscriptionComponent implements OnInit, OnDestroy {
             email: ["", [Validators.required, Validators.pattern(User.emailPattern)]],
             password: ["", [Validators.required, Validators.pattern(User.passwordPattern)]]
         });
-        this.firstNameCtrl = this.signUpForm.controls.firstName;
-        this.lastNameCtrl = this.signUpForm.controls.lastName;
-        this.pseudoCtrl = this.signUpForm.controls.pseudo;
-        this.emailCtrl = this.signUpForm.controls.email;
-        this.passwordCtrl = this.signUpForm.controls.password;
         this. errorSignUp = "";
         this. submitted = false;
         this.global = new GlobalService();
@@ -50,6 +41,10 @@ export class InscriptionComponent implements OnInit, OnDestroy {
         if (this.signUpSubscription)
             this.signUpSubscription.unsubscribe();
         console.log("inscription.component: destroyed!");
+    }
+
+    public get ctrl() : any {
+        return this.signUpForm.controls;
     }
 
     onSubmit(): void {
@@ -62,11 +57,11 @@ export class InscriptionComponent implements OnInit, OnDestroy {
 
         // Le formulaire est valide
         let user = {
-            firstName: this.firstNameCtrl.value,
-            lastName: this.lastNameCtrl.value,
-            pseudo: this.pseudoCtrl.value,
-            email: this.emailCtrl.value,
-            password: this.passwordCtrl.value
+            firstName: this.ctrl.firstName.value,
+            lastName: this.ctrl.lastName.value,
+            pseudo: this.ctrl.pseudo.value,
+            email: this.ctrl.email.value,
+            password: this.ctrl.password.value
         };
         this.signUpSubscription = this.userService.signUp(user).subscribe(
             // inscription OK

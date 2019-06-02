@@ -8,18 +8,18 @@
                         <div class="form-row mb-3">
                             <div class="col-6">
                                 <input formControlName="lastName" type="text" class="form-control" placeholder="nom"
-                                [ngClass]="{'is-invalid': (lastNameCtrl.dirty || submitted) && lastNameCtrl.errors, 'is-valid': lastNameCtrl.dirty && !lastNameCtrl.errors}">
-                                <div *ngIf="lastNameCtrl.errors" class="invalid-feedback">
-                                    <div *ngIf="submitted && lastNameCtrl.errors.required">champ obligatoire</div>
-                                    <div *ngIf="lastNameCtrl.errors.pattern">saisir au moins 2 lettres</div>
+                                [ngClass]="{'is-invalid': (ctrl.lastName.dirty || submitted) && ctrl.lastName.errors, 'is-valid': ctrl.lastName.dirty && !ctrl.lastName.errors}">
+                                <div *ngIf="ctrl.lastName.errors" class="invalid-feedback">
+                                    <div *ngIf="submitted && ctrl.lastName.errors.required">champ obligatoire</div>
+                                    <div *ngIf="ctrl.lastName.errors.pattern">saisir au moins 2 lettres</div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <input formControlName="firstName" type="text" class="form-control" placeholder="prénom"
-                                [ngClass]="{'is-invalid': (firstNameCtrl.dirty || submitted) && firstNameCtrl.errors, 'is-valid': firstNameCtrl.dirty && !firstNameCtrl.errors}">
-                                <div *ngIf="firstNameCtrl.errors" class="invalid-feedback">
-                                    <div *ngIf="submitted && firstNameCtrl.errors.required">champ obligatoire</div>
-                                    <div *ngIf="firstNameCtrl.errors.pattern">saisir au moins 2 lettres</div>
+                                [ngClass]="{'is-invalid': (ctrl.firstName.dirty || submitted) && ctrl.firstName.errors, 'is-valid': ctrl.firstName.dirty && !ctrl.firstName.errors}">
+                                <div *ngIf="ctrl.firstName.errors" class="invalid-feedback">
+                                    <div *ngIf="submitted && ctrl.firstName.errors.required">champ obligatoire</div>
+                                    <div *ngIf="ctrl.firstName.errors.pattern">saisir au moins 2 lettres</div>
                                 </div>
                             </div>
                         </div>
@@ -28,10 +28,10 @@
                                 <span class="input-group-text"><i class="fa fa-user"></i></span>
                             </div>
                             <input formControlName="pseudo" type="text" class="form-control" placeholder="pseudo"
-                            [ngClass]="{'is-invalid': (pseudoCtrl.dirty || submitted) && pseudoCtrl.errors, 'is-valid': pseudoCtrl.dirty && !pseudoCtrl.errors}">
-                            <div *ngIf="pseudoCtrl.errors" class="invalid-feedback">
-                                <div *ngIf="submitted && pseudoCtrl.errors.required">champ obligatoire</div>
-                                <div *ngIf="pseudoCtrl.errors.pattern">saisir au moins 2 lettres</div>
+                            [ngClass]="{'is-invalid': (ctrl.pseudo.dirty || submitted) && ctrl.pseudo.errors, 'is-valid': ctrl.pseudo.dirty && !ctrl.pseudo.errors}">
+                            <div *ngIf="ctrl.pseudo.errors" class="invalid-feedback">
+                                <div *ngIf="submitted && ctrl.pseudo.errors.required">champ obligatoire</div>
+                                <div *ngIf="ctrl.pseudo.errors.pattern">saisir au moins 2 lettres</div>
                             </div>
                         </div>
                         <div class="input-group mb-3">
@@ -39,10 +39,10 @@
                                 <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                             </div>
                             <input formControlName="email" type="email" class="form-control" placeholder="email"
-                            [ngClass]="{'is-invalid': (emailCtrl.dirty || submitted) && emailCtrl.errors, 'is-valid': emailCtrl.dirty && !emailCtrl.errors}">
-                            <div *ngIf="emailCtrl.errors" class="invalid-feedback">
-                                <div *ngIf="submitted && emailCtrl.errors.required">champ obligatoire</div>
-                                <div *ngIf="emailCtrl.errors.pattern">email invalide</div>
+                            [ngClass]="{'is-invalid': (ctrl.email.dirty || submitted) && ctrl.email.errors, 'is-valid': ctrl.email.dirty && !ctrl.email.errors}">
+                            <div *ngIf="ctrl.email.errors" class="invalid-feedback">
+                                <div *ngIf="submitted && ctrl.email.errors.required">champ obligatoire</div>
+                                <div *ngIf="ctrl.email.errors.pattern">email invalide</div>
                             </div>
                         </div>
                         <div class="input-group mb-3">
@@ -50,10 +50,10 @@
                                 <span class="input-group-text"><i class="fa fa-lock"></i></span>
                             </div>
                             <input formControlName="password" type="password" class="form-control" placeholder="password"
-                            [ngClass]="{'is-invalid': (passwordCtrl.dirty || submitted) && passwordCtrl.errors, 'is-valid': passwordCtrl.dirty && !passwordCtrl.errors}">
-                            <div *ngIf="passwordCtrl.errors" class="invalid-feedback">
-                                <div *ngIf="submitted && passwordCtrl.errors.required">champ obligatoire</div>
-                                <div *ngIf="passwordCtrl.errors.pattern">saisir au moins 8 caractères alphanumériques</div>
+                            [ngClass]="{'is-invalid': (ctrl.password.dirty || submitted) && ctrl.password.errors, 'is-valid': ctrl.password.dirty && !ctrl.password.errors}">
+                            <div *ngIf="ctrl.password.errors" class="invalid-feedback">
+                                <div *ngIf="submitted && ctrl.password.errors.required">champ obligatoire</div>
+                                <div *ngIf="ctrl.password.errors.pattern">saisir au moins 8 caractères alphanumériques</div>
                             </div>
                         </div>
                         <div class="form-group">
