@@ -1,0 +1,33 @@
+/* Sidebar-left */
+.sidebar-left {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #F7F7F7;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.sidebar-left li i {
+    margin-right: 15px;
+}
+
+.sidebar-left a {
+    color: #6c757d;
+    transition: 0.3s;
+}
+
+.sidebar-left a:hover {
+    background: #E6E6E6;
+}
+
+.sidebar-left .flex-column {
+    min-width: 160px;
+}
+
+.nav-link.active {
+    background: #E6E6E6;
+}

@@ -1,0 +1,8 @@
+<header class="w-100 px-2 shadow-sm" [hidden]="isHidden">
+    <div class="d-flex justify-content-between py-1">
+        <button class="btn btn-sm btn-outline-secondary" (click)="leftSidebarComponent.showSidebar()"><i class="fa fa-bars"></i></button>
+        <button class="btn btn-sm btn-outline-secondary" (click)="rightSidebarComponent.toggleSidebar()"><i class="fa fa-user"></i></button>
+    </div>
+    <user-header-left-sidebar #leftSidebarComponent></user-header-left-sidebar>
+    <user-header-right-sidebar #rightSidebarComponent></user-header-right-sidebar>
+</header>

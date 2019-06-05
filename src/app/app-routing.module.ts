@@ -1,46 +1,59 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+// Component
 import { InscriptionComponent } from './component/inscription/inscription.component';
 import { ConnectionComponent } from './component/connection/connection.component';
 import { HomeComponent } from './component/home/home.component';
 import { UserHomeComponent } from './component/user-home/user-home.component';
+import { UserProfilComponent } from './module/user/component/profil/profil.component';
 
+// Service
 import { GlobalService } from './common/global.service';
 
+// Guard
 import { IsAuthenticatedGuard } from './module/user/guard/is-authenticated.guard';
 import { IsNotAuthenticatedGuard } from './module/user/guard/is-not-authenticated.guard';
 
 const global = new GlobalService();
 const routes: Routes = [
     {
-        path: `${global.domainAppUrl}/accueil`,
+        path: `${global.domainAppUrl}/home`,
         component: HomeComponent
     },
     {
-        path: `${global.domainAppUrl}/inscription`,
+        path: `${global.domainAppUrl}/sign-up`,
         component: InscriptionComponent,
         canActivate: [
             IsNotAuthenticatedGuard
         ]
     },
     {
-        path: `${global.domainAppUrl}/connexion`,
+        path: `${global.domainAppUrl}/log-in`,
         component: ConnectionComponent,
         canActivate: [
             IsNotAuthenticatedGuard
         ]
     },
     {
-        path: `${global.domainAppUrl}/user/:id/accueil`,
-        component: UserHomeComponent,
+        path: `${global.domainAppUrl}/user/:id`,
         canActivate: [
             IsAuthenticatedGuard
+        ],
+        children: [ 
+            {
+                path: `home`,
+                component: UserHomeComponent
+            },
+            {
+                path: `profile`,
+                component: UserProfilComponent
+            }
         ]
     },
     {
         path: '**',
-        redirectTo: `${global.domainAppUrl}/accueil`
+        redirectTo: `${global.domainAppUrl}/home`
     }
 ];
 

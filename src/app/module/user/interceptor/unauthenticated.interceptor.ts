@@ -22,7 +22,7 @@ export class unauthenticatedInterceptor implements HttpInterceptor {
 
                 this.authService.logOut();
                 // Redirection vers la page de connexion
-                this.router.navigate([`/${this.global.domainAppUrl}/connexion`]);
+                this.router.navigate([`/${this.global.domainAppUrl}/log-in`]);
             }
 
             // Session expirée
@@ -31,7 +31,7 @@ export class unauthenticatedInterceptor implements HttpInterceptor {
 
                 this.authService.logOut();
                 // Redirection vers la page de connexion
-                this.router.navigate([`/${this.global.domainAppUrl}/connexion`]);
+                this.router.navigate([`/${this.global.domainAppUrl}/log-in`]);
             }
             
             return throwError(err);

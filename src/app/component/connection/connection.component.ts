@@ -3,7 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
+// Class
 import { User } from '../../module/user/model/user';
+
+// Service
 import { GlobalService } from 'src/app/common/global.service';
 import { AuthenticationService } from 'src/app/module/user/service/authentication.service';
 
@@ -51,7 +54,8 @@ export class ConnectionComponent implements OnInit, OnDestroy {
             return;
         }
 
-        // Le formulaire est valide
+        // Le formulaire est valide 
+        // Requête adressée à l'API REST
         this.logInSubscription = this.authService
             .logIn(this.ctrl.pseudo.value, this.ctrl.password.value)
             .subscribe(
@@ -60,26 +64,28 @@ export class ConnectionComponent implements OnInit, OnDestroy {
                     this.errorConnection = "";
                     
                     // Redirection vers l'espace utilisateur
-                    this.router.navigate([`/${this.global.domainAppUrl}/user/${user.id}/accueil`]);
+                    this.router.navigate([`/${this.global.domainAppUrl}/user/${user.id}/profile`]);
                 },
                 // Erreur connexion
                 err => {
-                    err.error.forEach(elm => {
-                        switch (elm.codeError) {
-                            case 1:
-                                this.errorConnection = "Vérifiez le pseudo";
-                                break;
-                            case 2:
-                                this.errorConnection = "Vérifiez le mot de passe";
-                                break;
-                            case 4:
-                                this.errorConnection = "pseudo ou mot de passe erroné";
-                                break;
-                            default:
-                                console.log("Le serveur a rencontré un problème")
-                                break;
-                        }                    
-                    });
+                    if (Array.isArray(err.error)) {
+                        err.error.forEach(elm => {
+                            switch (elm.codeError) {
+                                case 1:
+                                    this.errorConnection = "Vérifiez le pseudo";
+                                    break;
+                                case 2:
+                                    this.errorConnection = "Vérifiez le mot de passe";
+                                    break;
+                                case 4:
+                                    this.errorConnection = "pseudo ou mot de passe erroné";
+                                    break;
+                                default:
+                                    console.log("Le serveur a rencontré un problème")
+                                    break;
+                            }                    
+                        });
+                    }
             });
     }
 
