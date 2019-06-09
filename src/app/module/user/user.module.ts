@@ -13,6 +13,7 @@ import { HeaderRightSidebarComponent } from './component/header-right-sidebar/he
 // Service
 import { AuthenticationService } from './service/authentication.service';
 import { UserService } from './service/user.service';
+import { FriendService } from './service/friend.service';
 
 // Guard
 import { IsAuthenticatedGuard } from './guard/is-authenticated.guard';
@@ -20,13 +21,17 @@ import { IsNotAuthenticatedGuard } from './guard/is-not-authenticated.guard';
 
 // Interceptor
 import { unauthenticatedInterceptor } from './interceptor/unauthenticated.interceptor';
+import { UserHeaderFriendComponent } from './component/header-friend/header-friend.component';
+import { UserRequestFriendComponent } from './component/request-friend/request-friend.component';
 
 @NgModule({
     declarations: [
         UserProfilComponent,
         UserHeaderComponent,
         HeaderLeftSidebarComponent,
-        HeaderRightSidebarComponent
+        HeaderRightSidebarComponent,
+        UserHeaderFriendComponent,
+        UserRequestFriendComponent
     ],
     imports: [
         CommonModule,
@@ -44,6 +49,7 @@ import { unauthenticatedInterceptor } from './interceptor/unauthenticated.interc
         IsAuthenticatedGuard,
         IsNotAuthenticatedGuard,
         UserService,
+        FriendService,
         { provide: HTTP_INTERCEPTORS, useClass: unauthenticatedInterceptor, multi: true },
     ]
 })

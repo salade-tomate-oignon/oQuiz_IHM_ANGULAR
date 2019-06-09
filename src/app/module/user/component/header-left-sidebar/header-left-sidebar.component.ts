@@ -32,7 +32,7 @@ export class HeaderLeftSidebarComponent implements OnInit, OnDestroy {
                 }, 100);
         });
         this.eventComSubscription = this.eventCom.newEventSubject.subscribe(e => {
-            if (e.component === "R" && e.event === "click" && e.idDom === "a")
+            if (e.component === "header-right-sidebar" && e.event === "click")
                 this.unselectAll();
         });
     }
@@ -53,7 +53,8 @@ export class HeaderLeftSidebarComponent implements OnInit, OnDestroy {
         this.widthSidebar = 0;
         this.isActiveLink = {
             friends: false,
-            discussions: false
+            discussions: false,
+            gaming: false
         };
     }
 
@@ -72,9 +73,9 @@ export class HeaderLeftSidebarComponent implements OnInit, OnDestroy {
     
     clickLink(event): void {
         this.eventCom.newEventSubject.next({
-            component: "L",
+            component: "header-left-sidebar",
             event: "click",
-            idDom: "a"
+            idDom: event.target.id
         })
         this.unselectAll();
         this.isActiveLink[event.target.id] = true;

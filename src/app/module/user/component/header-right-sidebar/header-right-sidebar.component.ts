@@ -34,7 +34,7 @@ export class HeaderRightSidebarComponent implements OnInit, OnDestroy {
                 }, 100);
         });
         this.eventComSubscription = this.eventCom.newEventSubject.subscribe(e => {
-            if (e.component === "L" && e.event === "click" && e.idDom === "a")
+            if (e.component === "header-left-sidebar" && e.event === "click")
                 this.unselectAll();
         });
     }
@@ -73,9 +73,9 @@ export class HeaderRightSidebarComponent implements OnInit, OnDestroy {
     
     clickLink(event): void {
         this.eventCom.newEventSubject.next({
-            component: "R",
+            component: "header-right-sidebar",
             event: "click",
-            idDom: "a"
+            idDom: event.target.id
         })
         this.unselectAll();
         this.isActiveLink[event.target.id] = true;

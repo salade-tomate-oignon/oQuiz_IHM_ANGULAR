@@ -1,17 +1,17 @@
-<div class="row h-100 profile">
+<div class="row l-body-with-header">
         <div class="col-12 col-sm-8 px-0 mx-auto my-auto" style="max-width: 600px;">
             <div class="card shadow-lg">
                 <div class="card-header px-5"><strong>Profil</strong></div>
                 <div class="card-body px-4">
-                    <!-- ALERT: inscription réussie et redirection vers la page de connexion-->
+                    <!-- ALERT: modification du profil réussie -->
                     <div *ngIf="successProfile" class="alert alert-success" role="alert">
                         <p>Votre profil a été modifié avec succès!</p>
                     </div>
     
-                    <!-- ALERT: erreur lors de l'inscription -->
+                    <!-- ALERT: erreur lors de la modification du profil -->
                     <div *ngIf="errorProfile" class="alert alert-warning" role="alert">{{errorProfile}}</div>
                     
-                    <!-- Formulaire D'inscription -->
+                    <!-- Formulaire -->
                     <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
                         <div class="form-row mb-3">
                             <div class="col-6">

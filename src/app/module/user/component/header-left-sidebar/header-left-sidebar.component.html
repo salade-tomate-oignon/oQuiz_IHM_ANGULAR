@@ -4,7 +4,7 @@
     </div>
     <ul class="nav flex-column">
         <li class="nav-item">
-            <a id="friends" class="nav-link py-1" [routerLink]="['/' + global.domainAppUrl + '/user/' + userId + '/home']"
+            <a id="friends" class="nav-link py-1" [routerLink]="['/' + global.domainAppUrl + '/user/' + userId + '/add-friend']"
             [ngClass]="{'active': isActiveLink['friends']}"
             (click)="clickLink($event)">
                 <i class="fa fa-users"></i>amis
@@ -15,6 +15,13 @@
             [ngClass]="{'active': isActiveLink['discussions']}"
             (click)="clickLink($event)"> 
                 <i class="fa fa-envelope"></i>discussions
+            </a>
+        </li>
+        <li class="nav-item">
+            <a id="gaming" class="nav-link py-1" [routerLink]="['/' + global.domainAppUrl + '/user/' + userId + '/home']"
+            [ngClass]="{'active': isActiveLink['gaming']}"
+            (click)="clickLink($event)"> 
+                <i class="fa fa-gamepad"></i>jeu
             </a>
         </li>
     </ul>

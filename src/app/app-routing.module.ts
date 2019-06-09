@@ -7,6 +7,7 @@ import { ConnectionComponent } from './component/connection/connection.component
 import { HomeComponent } from './component/home/home.component';
 import { UserHomeComponent } from './component/user-home/user-home.component';
 import { UserProfilComponent } from './module/user/component/profil/profil.component';
+import { UserRequestFriendComponent } from './module/user/component/request-friend/request-friend.component';
 
 // Service
 import { GlobalService } from './common/global.service';
@@ -48,6 +49,14 @@ const routes: Routes = [
             {
                 path: `profile`,
                 component: UserProfilComponent
+            },
+            {
+                path: `add-friend`,
+                component: UserRequestFriendComponent
+            },
+            {
+                path: '**',
+                redirectTo: `home`
             }
         ]
     },

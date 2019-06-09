@@ -1,0 +1,30 @@
+<div class="row l-body-with-header">
+    <div class="col-12 col-sm-8 px-3 mx-auto my-auto" style="max-width: 600px;">
+        <div class="mb-3"><strong>AJOUTER UN AMI</strong></div>
+
+        
+        <div class="mb-2">Tu peux ajouter un ami grâce à son pseudo</div>
+        
+        <!-- ALERT: demande d'ami envoyée avec succès -->
+        <div *ngIf="successAddFriend" class="alert alert-success" role="alert">
+            <p>Demande d'ami envoyée avec succès!</p>
+        </div>
+
+        <!-- ALERT: erreur lors de l'envoi de la demande -->
+        <div *ngIf="errorAddfriend" class="alert alert-warning" role="alert">{{errorAddfriend}}</div>
+        
+        <!-- Formulaire -->
+        <form [formGroup]="addFriendForm" (ngSubmit)="onSubmit()">
+            <div class="form-row mb-3">
+                <input formControlName="pseudo" type="text" class="form-control" placeholder="Entrez un pseudo"
+                    [ngClass]="{'is-invalid': (ctrl.pseudo.value!='') && ctrl.pseudo.errors, 'is-valid': (ctrl.pseudo.value!='') && !ctrl.pseudo.errors}">
+                <div *ngIf="ctrl.pseudo.errors" class="invalid-feedback">
+                    <div *ngIf="ctrl.pseudo.errors.pattern">saisir au moins 2 lettres</div>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                    <button type="submit" class="btn btn-sm btn-outline-primary mr-5">Ajouter un ami</button>
+                </div>
+        </form>
+    </div>
+</div>

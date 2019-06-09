@@ -1,0 +1,62 @@
+/* .l-middle {
+    display: block;
+    width: calc(100vh - 300px);
+    height: 100%;
+    overflow-x: scroll;
+} */
+
+.test {
+    width: 900px;
+    height: 100%;
+}
+
+
+
+.l-header {
+    width: 100vw;
+    position: relative;
+}
+
+.l-header-left {
+    padding: 4px 8px;
+    width: 46px;
+    float: left;
+}
+
+.l-header-middle {
+    width: auto;
+    height: 39px;
+    margin: 0 46px;
+    overflow: hidden;
+}
+
+.l-header-middle:hover {
+    overflow-x: scroll;
+}
+
+.l-header-right {
+    padding: 4px 8px;
+    width: 46px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.l-header-middle::-webkit-scrollbar {
+    height: 4px;
+}
+
+/* Track */
+.l-header-middle::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0); 
+}
+
+/* Handle */
+.l-header-middle::-webkit-scrollbar-thumb {
+    background: #bbb; 
+}
+
+/* Handle on hover */
+.l-header-middle::-webkit-scrollbar-thumb:hover {
+    background: #888; 
+}
