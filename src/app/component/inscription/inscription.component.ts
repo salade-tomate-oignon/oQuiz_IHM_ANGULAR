@@ -3,7 +3,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
+// Class
 import { User } from 'src/app/module/user/model/user';
+
+// Service
 import { GlobalService } from 'src/app/common/global.service';
 import { UserService } from 'src/app/module/user/service/user.service';
 
@@ -17,6 +20,7 @@ export class InscriptionComponent implements OnInit, OnDestroy {
     signUpForm: FormGroup;
     signUpSubscription: Subscription;
     errorSignUp: string;
+    successSignUp: boolean;
     submitted: boolean;
 
     constructor(private formBuilder: FormBuilder,
@@ -33,6 +37,7 @@ export class InscriptionComponent implements OnInit, OnDestroy {
             password: ["", [Validators.required, Validators.pattern(User.passwordPattern)]]
         });
         this. errorSignUp = "";
+        this. successSignUp = false;
         this. submitted = false;
         this.global = new GlobalService();
     }
@@ -63,51 +68,59 @@ export class InscriptionComponent implements OnInit, OnDestroy {
             email: this.ctrl.email.value,
             password: this.ctrl.password.value
         };
+
+        // Requête adressée à l'API REST
         this.signUpSubscription = this.userService.signUp(user).subscribe(
             // inscription OK
             user => {
-                // Redirection vers la page de connexion
                 this.errorSignUp = "";
-                this.router.navigate([`${this.global.domainAppUrl}/connexion`]);
+                this.successSignUp = true;
+
+                setTimeout(() => {
+                    // Redirection vers la page de connexion
+                    this.router.navigate([`${this.global.domainAppUrl}/log-in`]);
+                }, 5000);
             },
             // Erreur inscription
             err => {
-                err.error.forEach(elm => {
-                    switch (elm.codeError) {
-                        case 1:
-                            this.errorSignUp = "Vérifiez le prénom";
-                            break;
-                        case 2:
-                            this.errorSignUp = "Vérifiez le nom";
-                            break;
-                        case 3:
-                            this.errorSignUp = "Vérifiez le pseudo";
-                            break;
-                        case 4:
-                            this.errorSignUp = "Vérifiez l'email";
-                            break;
-                        case 5:
-                            this.errorSignUp = "Vérifiez le mot de passe";
-                            break;
-                        case 7:
-                            this.errorSignUp = "Ce pseudo est déjà utilisé";
-                            this.signUpForm.patchValue({
-                                pseudo: ""
-                            });                            
-                            break;
-                        case 8:
-                            this.errorSignUp = "Cet email est déjà utilisé";
-                            this.signUpForm.patchValue({
-                                email: ""
-                            });  
-                            break;
-                        default:
-                            console.log("Le serveur a rencontré un problème")
-                            break;
-                    }                    
-                });
+                if (Array.isArray(err.error)) {
+                    err.error.forEach(elm => {
+                        switch (elm.codeError) {
+                            case 1:
+                                this.errorSignUp = "Vérifiez le prénom";
+                                break;
+                            case 2:
+                                this.errorSignUp = "Vérifiez le nom";
+                                break;
+                            case 3:
+                                this.errorSignUp = "Vérifiez le pseudo";
+                                break;
+                            case 4:
+                                this.errorSignUp = "Vérifiez l'email";
+                                break;
+                            case 5:
+                                this.errorSignUp = "Vérifiez le mot de passe";
+                                break;
+                            case 7:
+                                this.errorSignUp = "Ce pseudo est déjà utilisé";
+                                this.signUpForm.patchValue({
+                                    pseudo: ""
+                                });                            
+                                break;
+                            case 8:
+                                this.errorSignUp = "Cet email est déjà utilisé";
+                                this.signUpForm.patchValue({
+                                    email: ""
+                                });  
+                                break;
+                            default:
+                                console.log("Le serveur a rencontré un problème")
+                                break;
+                        }                    
+                    });
+                }
             }
-        )
+        );
     }
 
 }

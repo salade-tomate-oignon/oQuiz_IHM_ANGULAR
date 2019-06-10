@@ -1,0 +1,73 @@
+<div class="row l-body-with-header">
+        <div class="col-12 col-sm-8 px-0 mx-auto my-auto" style="max-width: 600px;">
+            <div class="card shadow-lg">
+                <div class="card-header px-5"><strong>Profil</strong></div>
+                <div class="card-body px-4">
+                    <!-- ALERT: modification du profil réussie -->
+                    <div *ngIf="successProfile" class="alert alert-success" role="alert">
+                        <p>Votre profil a été modifié avec succès!</p>
+                    </div>
+    
+                    <!-- ALERT: erreur lors de la modification du profil -->
+                    <div *ngIf="errorProfile" class="alert alert-warning" role="alert">{{errorProfile}}</div>
+                    
+                    <!-- Formulaire -->
+                    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                        <div class="form-row mb-3">
+                            <div class="col-6">
+                                <input formControlName="lastName" type="text" class="form-control" [placeholder]="user.lastName"
+                                [ngClass]="{'is-invalid': ctrl.lastName.dirty && ctrl.lastName.errors, 'is-valid': (ctrl.lastName.value!='') && ctrl.lastName.dirty && !ctrl.lastName.errors}">
+                                <div *ngIf="ctrl.lastName.errors" class="invalid-feedback">
+                                    <div *ngIf="ctrl.lastName.errors.pattern">saisir au moins 2 lettres</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <input formControlName="firstName" type="text" class="form-control" [placeholder]="user.firstName"
+                                [ngClass]="{'is-invalid': ctrl.firstName.dirty && ctrl.firstName.errors, 'is-valid': (ctrl.firstName.value!='') && ctrl.firstName.dirty && !ctrl.firstName.errors}">
+                                <div *ngIf="ctrl.firstName.errors" class="invalid-feedback">
+                                    <div *ngIf="ctrl.firstName.errors.pattern">saisir au moins 2 lettres</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input formControlName="pseudo" type="text" class="form-control" [placeholder]="user.pseudo"
+                            [ngClass]="{'is-invalid': ctrl.pseudo.dirty && ctrl.pseudo.errors, 'is-valid': (ctrl.pseudo.value!='') && ctrl.pseudo.dirty && !ctrl.pseudo.errors}">
+                            <div *ngIf="ctrl.pseudo.errors" class="invalid-feedback">
+                                <div *ngIf="ctrl.pseudo.errors.pattern">saisir au moins 2 lettres</div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                            </div>
+                            <input formControlName="email" type="email" class="form-control" [placeholder]="user.email"
+                            [ngClass]="{'is-invalid': ctrl.email.dirty && ctrl.email.errors, 'is-valid': (ctrl.email.value!='') && ctrl.email.dirty && !ctrl.email.errors}">
+                            <div *ngIf="ctrl.email.errors" class="invalid-feedback">
+                                <div *ngIf="ctrl.email.errors.pattern">email invalide</div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <input formControlName="password" type="password" class="form-control" placeholder="password"
+                            [ngClass]="{'is-invalid': ctrl.password.dirty && ctrl.password.errors, 'is-valid': (ctrl.password.value!='') && ctrl.password.dirty && !ctrl.password.errors}">
+                            <div *ngIf="ctrl.password.errors" class="invalid-feedback">
+                                <div *ngIf="ctrl.password.errors.pattern">saisir au moins 8 caractères alphanumériques</div>
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
+                            <div class="btn btn-sm btn-outline-secondary" [hidden]="isModifying" (click)="modify()">Modifier</div>
+                            <button type="submit" class="btn btn-sm btn-outline-primary mr-5" [hidden]="!isModifying">Enregistrer</button>
+                            <div class="btn btn-sm btn-outline-warning" [hidden]="!isModifying" (click)="reset()">Annuler</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    

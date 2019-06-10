@@ -1,0 +1,24 @@
+<nav class="l-header-middle-content" [hidden]="isHidden">
+    <ul class="nav">
+        <li class="nav-item">
+            <a id="add-friend" class="nav-link" [routerLink]="['/' + global.domainAppUrl + '/user/' + userId + '/add-friend']"
+            [ngClass]="{'active': isActiveLink['add-friend']}"
+            (click)="clickLink($event)">demande d'ami</a>
+        </li>
+        <li class="nav-item">
+            <a id="friends-list" class="nav-link" [routerLink]="['/' + global.domainAppUrl + '/user/' + userId + '/home']"
+            [ngClass]="{'active': isActiveLink['friends-list']}"
+            (click)="clickLink($event)">liste d'amis</a>
+        </li>
+        <li class="nav-item">
+            <a id="on-hold" class="nav-link" [routerLink]="['/' + global.domainAppUrl + '/user/' + userId + '/home']"
+            [ngClass]="{'active': isActiveLink['on-hold']}"
+            (click)="clickLink($event)">en attente</a>
+        </li>
+        <li class="nav-item">
+            <a id="blocked" class="nav-link" [routerLink]="['/' + global.domainAppUrl + '/user/' + userId + '/home']"
+            [ngClass]="{'active': isActiveLink['blocked']}"
+            (click)="clickLink($event)">bloqué</a>
+        </li>
+    </ul>
+</nav>

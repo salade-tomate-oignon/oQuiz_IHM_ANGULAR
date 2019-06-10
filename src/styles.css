@@ -1,12 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+/* LAYOUT */
 body {
     height: 100vh;
+}
+
+.l-body-with-header {
+    height: calc(100vh - 39px);
+    margin: 0px;
+    overflow-y: scroll;
 }
 
 .invalid-feedback {
     display: block;
 }
 
-.no-padding {
-    padding: 0;
+/* WIDGET */
+.btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none;
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -10,10 +10,12 @@ import { GlobalService } from 'src/app/common/global.service';
 export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
+    @Output() connected: EventEmitter<boolean>;
 
     constructor(private global: GlobalService, private http: HttpClient) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
+        this.connected = new EventEmitter();
     }
 
     public get currentUserValue(): User {
@@ -41,17 +43,24 @@ export class AuthenticationService {
         this.currentUserSubject.next(null);
     }
 
+    public updateSession(user: User): void {
+        this.openSession(user);
+        this.currentUserSubject.next(user);
+    }
+
     public isAuthenticated(): boolean {
         return this.currentUserValue != null;
     }
 
     private openSession(user: User): void {
         localStorage.setItem('currentUser', JSON.stringify(user));
+        this.connected.emit(true);
         console.log("Session ouverte!");
     }
 
     private closeSession(): void {
         localStorage.clear();
+        this.connected.emit(false);
         console.log("Session fermée!");
     }
 

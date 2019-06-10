@@ -1,0 +1,28 @@
+<nav class="sidebar-left" [ngStyle]="{'width': widthSidebar + 'px'}">
+    <div class="px-2 py-1 text-right">
+        <button class="btn btn-sm btn-outline-secondary" (click)="hideSidebar()"><i class="fa fa-close"></i></button>
+    </div>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a id="friends" class="nav-link py-1" [routerLink]="['/' + global.domainAppUrl + '/user/' + userId + '/add-friend']"
+            [ngClass]="{'active': isActiveLink['friends']}"
+            (click)="clickLink($event)">
+                <i class="fa fa-users"></i>amis
+            </a>
+        </li>
+        <li class="nav-item">
+            <a id="discussions" class="nav-link py-1" [routerLink]="['/' + global.domainAppUrl + '/user/' + userId + '/home']"
+            [ngClass]="{'active': isActiveLink['discussions']}"
+            (click)="clickLink($event)"> 
+                <i class="fa fa-envelope"></i>discussions
+            </a>
+        </li>
+        <li class="nav-item">
+            <a id="gaming" class="nav-link py-1" [routerLink]="['/' + global.domainAppUrl + '/user/' + userId + '/home']"
+            [ngClass]="{'active': isActiveLink['gaming']}"
+            (click)="clickLink($event)"> 
+                <i class="fa fa-gamepad"></i>jeu
+            </a>
+        </li>
+    </ul>
+</nav>

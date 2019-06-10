@@ -1,0 +1,19 @@
+<nav class="sidebar-right" [ngStyle]="{'height': heightSidebar}">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a id="profile" class="nav-link py-1" [routerLink]="['/' + global.domainAppUrl + '/user/' + userId + '/profile']"
+            [ngClass]="{'active': isActiveLink['profile']}"
+            (click)="clickLink($event)">
+                <i class="fa fa-user"></i>profil
+            </a>
+        </li>
+        <li class="nav-item">
+            <a id="logOut" class="nav-link py-1" [routerLink]="['/' + global.domainAppUrl + '/home']"
+            [ngClass]="{'active': isActiveLink['logOut']}"
+            (click)="clickLink($event)"
+            (click)="logOut()"> 
+                <i class="fa fa-sign-out"></i>deconnexion
+            </a>
+        </li>
+    </ul>
+</nav>

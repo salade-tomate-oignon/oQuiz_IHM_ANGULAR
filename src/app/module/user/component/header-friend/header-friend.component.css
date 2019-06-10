@@ -1,0 +1,23 @@
+.l-header-middle-content {
+    height: 31px;
+    margin: 4px 0;
+    min-width: 415px;
+}
+
+.l-header-middle-content .nav-link {
+    padding: 3px 7px 4px 7px;
+    margin: 0 5px;
+    color: #6c757d;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+.l-header-middle-content .nav-link:hover {
+    background: #6c757d;
+    color: white;
+}
+
+.nav-link.active {
+    background: #6c757d !important;
+    color: white !important;
+}

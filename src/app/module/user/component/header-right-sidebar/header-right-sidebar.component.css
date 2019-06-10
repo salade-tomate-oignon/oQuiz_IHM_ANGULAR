@@ -1,0 +1,30 @@
+/* Sidebar-right */
+.sidebar-right {
+    height: 0;
+    width: 200px;
+    margin-right: 5px;
+    position: fixed;
+    z-index: 1;
+    top: 45px;;
+    right: 0;
+    background-color: #F7F7F7;
+    overflow-y: hidden;
+    transition: 0.3s;
+}
+
+.sidebar-right li i {
+    margin-right: 15px;
+}
+
+.sidebar-right a {
+    color: #6c757d;
+    transition: 0.3s;
+}
+
+.sidebar-right a:hover {
+    background: #E6E6E6;
+}
+
+.nav-link.active {
+    background: #E6E6E6;
+}
