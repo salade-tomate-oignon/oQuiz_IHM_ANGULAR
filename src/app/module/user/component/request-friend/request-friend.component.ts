@@ -21,7 +21,7 @@ export class UserRequestFriendComponent implements OnInit {
     
     constructor(private formBuilder: FormBuilder, 
         private authService: AuthenticationService,
-        private userService: FriendService) { }
+        private friendService: FriendService) { }
 
     ngOnInit() {
         this.init();
@@ -58,7 +58,7 @@ export class UserRequestFriendComponent implements OnInit {
         if(this.ctrl.pseudo.value === "tomtom")
             console.log(this.ctrl.pseudo.value);
         
-        this.userService.friendRequest(this.userId, this.ctrl.pseudo.value)
+        this.friendService.friendRequest(this.userId, this.ctrl.pseudo.value)
             .then(
                 // Modification du profil réussie
                 resp => {

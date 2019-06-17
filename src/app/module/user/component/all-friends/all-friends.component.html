@@ -1,0 +1,15 @@
+<div class="row l-body-with-header">
+    <div class="col-12 col-sm-8 px-3 py-4 mx-auto" style="max-width: 900px;">
+        <div class="alert alert-secondary" *ngIf="friends != null && friends.length == 0">
+            Liste vide
+        </div>
+        <div id="{{index}}"class="item" *ngFor="let friend of friends; let index = index">
+            <div class="item-text">{{friend.pseudo}}</div>
+            <div class="item-icon">
+                <button class="btn btn-sm btn-outline-warning"><i class="fa fa-close"></i></button>
+                <button class="btn btn-sm btn-outline-danger"><i class="fa fa-ban"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+    

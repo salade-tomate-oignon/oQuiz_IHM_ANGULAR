@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserHeaderFriendComponent } from './header-friend.component';
+import { UserOnHoldComponent } from './on-hold.component';
 
-describe('UserHeaderFriendComponent', () => {
-  let component: UserHeaderFriendComponent;
-  let fixture: ComponentFixture<UserHeaderFriendComponent>;
+describe('UserOnHoldComponent', () => {
+  let component: UserOnHoldComponent;
+  let fixture: ComponentFixture<UserOnHoldComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserHeaderFriendComponent ]
+      declarations: [ UserOnHoldComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserHeaderFriendComponent);
+    fixture = TestBed.createComponent(UserOnHoldComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

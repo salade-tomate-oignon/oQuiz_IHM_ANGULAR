@@ -13,4 +13,16 @@ export class FriendService {
     friendRequest(userId: number, pseudoFriend: string) {
         return this.http.post<any>(`${this.global.apiUrl}/friend/user/${userId}/friend-request/friend/${pseudoFriend}`, []).toPromise();
     }
+    
+    getAllfriendRequests(userId: number) {
+        return this.http.get<any>(`${this.global.apiUrl}/friend/user/${userId}/getAllfriendRequests`).toPromise();
+    }
+    
+    getAllBlockedfriends(userId: number) {
+        return this.http.get<any>(`${this.global.apiUrl}/friend/user/${userId}/getAllBlockedfriends`).toPromise();
+    }
+    
+    getAllfriends(userId: number) {
+        return this.http.get<any>(`${this.global.apiUrl}/friend/user/${userId}/getAllfriends`).toPromise();
+    }
 }

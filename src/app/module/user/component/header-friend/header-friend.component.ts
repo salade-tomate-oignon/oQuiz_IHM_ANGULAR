@@ -18,41 +18,54 @@ export class UserHeaderFriendComponent implements OnInit {
     eventComSubscription: Subscription;
 
     constructor(public global: GlobalService,
-        public eventCom: EventCommunicationService,
+        private eventCom: EventCommunicationService,
         private authService: AuthenticationService) { }
 
     ngOnInit() {
+        this.isActiveLink = {
+            "add-friend": false,
+            "all-friends": false,
+            "on-hold": false,
+            "blocked-users": false
+        };
         this.init();
-        this.isHidden = true;
         this.eventComSubscription = this.eventCom.newEventSubject.subscribe(e => {
             if (e.component === "header-left-sidebar" && e.event === "click" && e.idDom === "friends") {
                 this.init();
-                this.isHidden = false;
             }
             else 
                 this.isHidden = true;
         });
     }
 
-    init() {
-        this.userId = 0;
-        if(this.authService.currentUserValue)
-            this.userId = this.authService.currentUserValue.id;
-        
-        this.isActiveLink = {
-            "add-friend": true,
-            "friends-list": false,
-            "on-hold": false,
-            "blocked": false
-        };
+    private activateLinkFromUrl(): void {
+        this.unselectAll();
+
+        // On attend que l'url soit mis-à-jour
+        setTimeout(() => {
+            let key = window.location.href.split("/").pop();
+            if (key in this.isActiveLink) {   
+                this.isActiveLink[key] = true;
+                this.isHidden = false;
+            }
+            else
+                this.isHidden = true;
+        }, 100);
     }
 
-    unselectAll(): void {
+    private init():void {
+        this.userId = 0;
+        this.activateLinkFromUrl();
+        if(this.authService.currentUserValue)
+            this.userId = this.authService.currentUserValue.id;
+    }
+
+    private unselectAll(): void {
         for (const key in this.isActiveLink)
             this.isActiveLink[key] = false;
     }
 
-    clickLink(event): void {
+    public clickLink(event): void {
         this.unselectAll();
         this.isActiveLink[event.target.id] = true;
     }

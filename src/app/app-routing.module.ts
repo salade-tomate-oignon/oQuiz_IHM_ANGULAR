@@ -8,6 +8,9 @@ import { HomeComponent } from './component/home/home.component';
 import { UserHomeComponent } from './component/user-home/user-home.component';
 import { UserProfilComponent } from './module/user/component/profil/profil.component';
 import { UserRequestFriendComponent } from './module/user/component/request-friend/request-friend.component';
+import { UserOnHoldComponent } from './module/user/component/on-hold/on-hold.component';
+import { UserAllFriendsComponent } from './module/user/component/all-friends/all-friends.component';
+import { UserBlockedUsersComponent } from './module/user/component/blocked-users/blocked-users.component';
 
 // Service
 import { GlobalService } from './common/global.service';
@@ -53,6 +56,26 @@ const routes: Routes = [
             {
                 path: `add-friend`,
                 component: UserRequestFriendComponent
+            },
+            {
+                path: `all-friends`,
+                component: UserAllFriendsComponent
+            },
+            {
+                path: `blocked-users`,
+                component: UserBlockedUsersComponent
+            },
+            {
+                path: `on-hold`,
+                component: UserOnHoldComponent
+            },
+            {
+                path: `discussions`,
+                component: UserHomeComponent
+            },
+            {
+                path: `gaming`,
+                component: UserHomeComponent
             },
             {
                 path: '**',
