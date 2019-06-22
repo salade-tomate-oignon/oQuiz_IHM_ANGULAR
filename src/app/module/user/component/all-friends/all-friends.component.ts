@@ -41,4 +41,21 @@ export class UserAllFriendsComponent implements OnInit {
             );
     }
 
+    public block(otherUserId, index) {
+        // Requête adressée à l'API REST
+        this.friendService.blockUser(this.userId, otherUserId).then(
+            resp => {
+                this.friends.splice(index, 1);
+            }
+        )
+    }
+    
+    public remove(otherUserId, index) {
+        // Requête adressée à l'API REST
+        this.friendService.removeFriend(this.userId, otherUserId).then(
+            resp => {
+                this.friends.splice(index, 1);
+            }
+        )
+    }
 }
