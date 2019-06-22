@@ -42,4 +42,13 @@ export class UserBlockedUsersComponent implements OnInit {
                 }
             );
     }
+
+    public unBlock(otherUserId, index) {
+        // Requête adressée à l'API REST
+        this.friendService.unBlockUser(this.userId, otherUserId).then(
+            resp => {
+                this.blockedUsers.splice(index, 1);
+            }
+        )
+    }
 }

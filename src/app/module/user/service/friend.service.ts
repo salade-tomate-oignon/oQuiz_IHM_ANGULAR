@@ -34,6 +34,10 @@ export class FriendService {
         return this.http.put<any>(`${this.global.apiUrl}/friend/user/${userId}/blockUser/otherUser/${otherUserId}`, []).toPromise();
     }
     
+    unBlockUser(userId: number, otherUserId: number) {
+        return this.http.delete<any>(`${this.global.apiUrl}/friend/user/${userId}/unBlockUser/otherUser/${otherUserId}`).toPromise();
+    }
+    
     acceptFriendRequest(userId: number, otherUserId: number) {
         return this.http.put<any>(`${this.global.apiUrl}/friend/user/${userId}/acceptFriendRequest/otherUser/${otherUserId}`, []).toPromise();
     }

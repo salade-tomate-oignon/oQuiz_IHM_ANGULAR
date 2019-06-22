@@ -6,7 +6,7 @@
         <div id="{{index}}"class="item" *ngFor="let blockedUser of blockedUsers; let index = index">
             <div class="item-text">{{blockedUser.pseudo}}</div>
             <div class="item-icon">
-                <button class="btn btn-sm btn-outline-secondary"><i class="fa fa-unlock"></i></button>
+                <button (click)="unBlock(blockedUser.id, index)" class="btn btn-sm btn-outline-secondary"><i class="fa fa-unlock"></i></button>
             </div>
         </div>
     </div>
