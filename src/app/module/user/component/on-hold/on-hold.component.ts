@@ -1,24 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 // Service
 import { AuthenticationService } from '../../service/authentication.service';
 import { FriendService } from '../../service/friend.service';
+import { FriendSocketService } from '../../service/friend-socket.service';
 
 @Component({
     selector: 'user-on-hold',
     templateUrl: './on-hold.component.html',
     styleUrls: ['./on-hold.component.css']
 })
-export class UserOnHoldComponent implements OnInit {
+export class UserOnHoldComponent implements OnInit, OnDestroy {
     userId: number;
-    friendRequests: any;
+    friendRequests: Array<any>;
+    socketSubscription: Subscription;
 
     constructor(private friendService: FriendService,
+        private friendSocketService: FriendSocketService,
         private authService: AuthenticationService) { }
 
     ngOnInit() {
         this.userId = this.authService.currentUserValue.id;
         this.friendRequests = [];
+
+        // Écoute des messages envoyés par le <socket server> 
+        this.socketSubscription = this.friendSocketService.GetObservable().subscribe(
+            // Réception d'un message du <Socket Server>
+            message => {
+                if(message.topic == "on hold"){
+                    this.addRequest(message.data);
+                }
+        })
+
+        // Requête adressée à l'API REST
         this.friendService.getAllfriendRequests(this.userId)
             .then(
                 resp => {
@@ -41,4 +56,25 @@ export class UserOnHoldComponent implements OnInit {
             );
     }
 
+    ngOnDestroy(): void {
+        if (this.socketSubscription)
+            this.socketSubscription.unsubscribe();
+        console.log("user-on-hold.component: destroyed!");
+    }
+
+    private addRequest(data: any) {
+        let isAdded = false;
+
+        this.friendRequests.forEach((elm, index) => {
+            if(elm.id == data.id) {
+                isAdded = true;
+                this.friendRequests.splice(index, 1);
+                this.friendRequests.unshift(elm);
+            }
+        });
+        
+        if(!isAdded) {
+            this.friendRequests.unshift(data);
+        }
+    }
 }

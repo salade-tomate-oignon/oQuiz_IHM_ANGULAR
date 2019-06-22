@@ -19,6 +19,8 @@ export class UserBlockedUsersComponent implements OnInit {
     ngOnInit() {
         this.userId = this.authService.currentUserValue.id;
         this.blockedUsers = [];
+
+        // Requête adressée à l'API REST
         this.friendService.getAllBlockedfriends(this.userId)
             .then(
                 resp => {

@@ -14,6 +14,7 @@ import { HeaderRightSidebarComponent } from './component/header-right-sidebar/he
 import { AuthenticationService } from './service/authentication.service';
 import { UserService } from './service/user.service';
 import { FriendService } from './service/friend.service';
+import { FriendSocketService } from './service/friend-socket.service';
 
 // Guard
 import { IsAuthenticatedGuard } from './guard/is-authenticated.guard';
@@ -56,6 +57,7 @@ import { UserAllFriendsComponent } from './component/all-friends/all-friends.com
         IsNotAuthenticatedGuard,
         UserService,
         FriendService,
+        FriendSocketService,
         { provide: HTTP_INTERCEPTORS, useClass: unauthenticatedInterceptor, multi: true },
     ]
 })
