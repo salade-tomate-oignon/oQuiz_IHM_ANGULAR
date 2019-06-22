@@ -19,11 +19,15 @@ export class HeaderLeftSidebarComponent implements OnInit, OnDestroy {
     eventComSubscription: Subscription;
 
     constructor(public global: GlobalService,
-        public eventCom: EventCommunicationService,
+        private eventCom: EventCommunicationService,
         private authService: AuthenticationService) { }
 
     ngOnInit() {
-        this.init();
+        this.isActiveLink = {
+            friends: false,
+            discussions: false,
+            gaming: false
+        };
         this.connectedSubscription = this.authService.connected.subscribe(isConnected => {
             this.init();
             if (isConnected)
@@ -35,6 +39,7 @@ export class HeaderLeftSidebarComponent implements OnInit, OnDestroy {
             if (e.component === "header-right-sidebar" && e.event === "click")
                 this.unselectAll();
         });
+        this.init();
     }
 
     ngOnDestroy(): void {
@@ -45,33 +50,47 @@ export class HeaderLeftSidebarComponent implements OnInit, OnDestroy {
         console.log("header-left-sidebar.component: destroyed!");
     }
 
+    private activateLinkFromUrl(): void {
+        this.unselectAll();
+        let friendsLinks = ["add-friend", "all-friends", "on-hold", "blocked-users"];
+        let discussionsLinks = ["discussions"];
+        let gamingLinks = ["gaming"];
+
+        // On attend que l'url soit mis-à-jour
+        setTimeout(() => {
+            let key = window.location.href.split("/").pop();
+
+            if(friendsLinks.indexOf(key) != -1)
+                this.isActiveLink["friends"] = true;
+            if(discussionsLinks.indexOf(key) != -1)
+                this.isActiveLink["discussions"] = true;
+            if(gamingLinks.indexOf(key) != -1)
+                this.isActiveLink["gaming"] = true;
+        }, 100);
+    }
+
     private init() {
+        this.activateLinkFromUrl();
+        this.widthSidebar = 0;
         this.userId = 0;
         if(this.authService.currentUserValue)
             this.userId = this.authService.currentUserValue.id;
-        
-        this.widthSidebar = 0;
-        this.isActiveLink = {
-            friends: false,
-            discussions: false,
-            gaming: false
-        };
     }
 
-    showSidebar(): void {
+    public showSidebar(): void {
         this.widthSidebar = 200;
     }
 
-    hideSidebar(): void {
+    public hideSidebar(): void {
         this.widthSidebar = 0;
     }
 
-    unselectAll(): void {
+    private unselectAll(): void {
         for (const key in this.isActiveLink)
             this.isActiveLink[key] = false;
     }
     
-    clickLink(event): void {
+    public clickLink(event): void {
         this.eventCom.newEventSubject.next({
             component: "header-left-sidebar",
             event: "click",

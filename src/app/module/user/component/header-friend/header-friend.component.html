@@ -6,18 +6,18 @@
             (click)="clickLink($event)">demande d'ami</a>
         </li>
         <li class="nav-item">
-            <a id="friends-list" class="nav-link" [routerLink]="['/' + global.domainAppUrl + '/user/' + userId + '/home']"
-            [ngClass]="{'active': isActiveLink['friends-list']}"
+            <a id="all-friends" class="nav-link" [routerLink]="['/' + global.domainAppUrl + '/user/' + userId + '/all-friends']"
+            [ngClass]="{'active': isActiveLink['all-friends']}"
             (click)="clickLink($event)">liste d'amis</a>
         </li>
         <li class="nav-item">
-            <a id="on-hold" class="nav-link" [routerLink]="['/' + global.domainAppUrl + '/user/' + userId + '/home']"
+            <a id="on-hold" class="nav-link" [routerLink]="['/' + global.domainAppUrl + '/user/' + userId + '/on-hold']"
             [ngClass]="{'active': isActiveLink['on-hold']}"
             (click)="clickLink($event)">en attente</a>
         </li>
         <li class="nav-item">
-            <a id="blocked" class="nav-link" [routerLink]="['/' + global.domainAppUrl + '/user/' + userId + '/home']"
-            [ngClass]="{'active': isActiveLink['blocked']}"
+            <a id="blocked-users" class="nav-link" [routerLink]="['/' + global.domainAppUrl + '/user/' + userId + '/blocked-users']"
+            [ngClass]="{'active': isActiveLink['blocked-users']}"
             (click)="clickLink($event)">bloqué</a>
         </li>
     </ul>

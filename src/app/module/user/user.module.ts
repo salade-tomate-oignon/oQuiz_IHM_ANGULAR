@@ -14,6 +14,7 @@ import { HeaderRightSidebarComponent } from './component/header-right-sidebar/he
 import { AuthenticationService } from './service/authentication.service';
 import { UserService } from './service/user.service';
 import { FriendService } from './service/friend.service';
+import { FriendSocketService } from './service/friend-socket.service';
 
 // Guard
 import { IsAuthenticatedGuard } from './guard/is-authenticated.guard';
@@ -23,6 +24,9 @@ import { IsNotAuthenticatedGuard } from './guard/is-not-authenticated.guard';
 import { unauthenticatedInterceptor } from './interceptor/unauthenticated.interceptor';
 import { UserHeaderFriendComponent } from './component/header-friend/header-friend.component';
 import { UserRequestFriendComponent } from './component/request-friend/request-friend.component';
+import { UserOnHoldComponent } from './component/on-hold/on-hold.component';
+import { UserBlockedUsersComponent } from './component/blocked-users/blocked-users.component';
+import { UserAllFriendsComponent } from './component/all-friends/all-friends.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +35,10 @@ import { UserRequestFriendComponent } from './component/request-friend/request-f
         HeaderLeftSidebarComponent,
         HeaderRightSidebarComponent,
         UserHeaderFriendComponent,
-        UserRequestFriendComponent
+        UserRequestFriendComponent,
+        UserOnHoldComponent,
+        UserBlockedUsersComponent,
+        UserAllFriendsComponent
     ],
     imports: [
         CommonModule,
@@ -50,6 +57,7 @@ import { UserRequestFriendComponent } from './component/request-friend/request-f
         IsNotAuthenticatedGuard,
         UserService,
         FriendService,
+        FriendSocketService,
         { provide: HTTP_INTERCEPTORS, useClass: unauthenticatedInterceptor, multi: true },
     ]
 })

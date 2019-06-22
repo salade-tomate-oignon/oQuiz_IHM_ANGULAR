@@ -1,0 +1,15 @@
+<div class="row l-body-with-header">
+    <div class="col-12 col-sm-8 px-3 py-4 mx-auto" style="max-width: 900px;">
+        <div class="alert alert-secondary" *ngIf="friendRequests != null && friendRequests.length == 0">
+            Aucune nouvelle demande d'ami
+        </div>
+        <div class="item" *ngFor="let friendRequest of friendRequests; let index = index">
+            <div class="item-text">{{friendRequest.pseudo}}</div>
+            <div class="item-icon">
+                <button (click)="accept(friendRequest.id, index)" class="btn btn-sm btn-outline-success"><i class="fa fa-plus"></i></button>
+                <button (click)="decline(friendRequest.id, index)"  class="btn btn-sm btn-outline-warning"><i class="fa fa-close"></i></button>
+                <button (click)="block(friendRequest.id, index)" class="btn btn-sm btn-outline-danger"><i class="fa fa-ban"></i></button>
+            </div>
+        </div>
+    </div>
+</div>

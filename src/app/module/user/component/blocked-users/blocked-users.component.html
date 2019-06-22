@@ -1,0 +1,14 @@
+<div class="row l-body-with-header">
+    <div class="col-12 col-sm-8 px-3 py-4 mx-auto" style="max-width: 900px;">
+        <div class="alert alert-secondary" *ngIf="blockedUsers != null && blockedUsers.length == 0">
+            Liste vide
+        </div>
+        <div id="{{index}}"class="item" *ngFor="let blockedUser of blockedUsers; let index = index">
+            <div class="item-text">{{blockedUser.pseudo}}</div>
+            <div class="item-icon">
+                <button (click)="unBlock(blockedUser.id, index)" class="btn btn-sm btn-outline-secondary"><i class="fa fa-unlock"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+        

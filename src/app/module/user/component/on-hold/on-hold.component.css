@@ -1,0 +1,29 @@
+.item {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+.item:hover {
+    background-color: #EBF2FB;
+}
+
+.item-text {
+    width: calc(100% - (42px + 39px + 40px));
+    height: 31px;
+    line-height: 31px;
+    float: left;
+    overflow: hidden;
+    vertical-align: middle;
+    text-overflow: ellipsis; 
+}
+
+.item-icon {
+    width: auto;
+}
+
+.item-icon button {
+    margin-left: 10px;
+}
