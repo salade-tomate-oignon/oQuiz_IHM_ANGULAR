@@ -25,4 +25,16 @@ export class FriendService {
     getAllfriends(userId: number) {
         return this.http.get<any>(`${this.global.apiUrl}/friend/user/${userId}/getAllfriends`).toPromise();
     }
+    
+    declineFriendRequest(userId: number, otherUserId: number) {
+        return this.http.put<any>(`${this.global.apiUrl}/friend/user/${userId}/declineFriendRequest/otherUser/${otherUserId}`, []).toPromise();
+    }
+    
+    blockUser(userId: number, otherUserId: number) {
+        return this.http.put<any>(`${this.global.apiUrl}/friend/user/${userId}/blockUser/otherUser/${otherUserId}`, []).toPromise();
+    }
+    
+    acceptFriendRequest(userId: number, otherUserId: number) {
+        return this.http.put<any>(`${this.global.apiUrl}/friend/user/${userId}/acceptFriendRequest/otherUser/${otherUserId}`, []).toPromise();
+    }
 }

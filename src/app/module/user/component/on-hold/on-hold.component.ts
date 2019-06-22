@@ -62,6 +62,33 @@ export class UserOnHoldComponent implements OnInit, OnDestroy {
         console.log("user-on-hold.component: destroyed!");
     }
 
+    public accept(otherUserId, index) {
+        // Requête adressée à l'API REST
+        this.friendService.acceptFriendRequest(this.userId, otherUserId).then(
+            resp => {
+                this.friendRequests.splice(index, 1);
+            }
+        )
+    }
+    
+    public decline(otherUserId, index) {
+        // Requête adressée à l'API REST
+        this.friendService.declineFriendRequest(this.userId, otherUserId).then(
+            resp => {
+                this.friendRequests.splice(index, 1);
+            }
+        )
+    }
+    
+    public block(otherUserId, index) {
+        // Requête adressée à l'API REST
+        this.friendService.blockUser(this.userId, otherUserId).then(
+            resp => {
+                this.friendRequests.splice(index, 1);
+            }
+        )
+    }
+
     private addRequest(data: any) {
         let isAdded = false;
 
