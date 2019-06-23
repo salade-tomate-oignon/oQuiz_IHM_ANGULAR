@@ -12,6 +12,7 @@ import { FriendService } from '../../service/friend.service';
 export class UserAllFriendsComponent implements OnInit {
     userId: number;
     friends: any;
+    isLoading: boolean;
 
     constructor(private friendService: FriendService,
         private authService: AuthenticationService) { }
@@ -19,15 +20,20 @@ export class UserAllFriendsComponent implements OnInit {
     ngOnInit() {
         this.userId = this.authService.currentUserValue.id;
         this.friends = [];
+        this.isLoading = true;
+
+        // Requête adressée à l'API REST
         this.friendService.getAllfriends(this.userId)
             .then(
                 resp => {
                     // Mise-à-jour de l'affichage
                     this.friends = resp;
+                    this.isLoading = false;
                 })
             .catch(
                 // Erreur 
                 err => {
+                    this.isLoading = false;
                     if (Array.isArray(err.error)) {
                         err.error.forEach(elm => {
                             switch (elm.codeError) {

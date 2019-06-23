@@ -1,5 +1,6 @@
 <div class="row l-body-with-header">
-    <div class="col-12 col-sm-8 px-3 py-4 mx-auto" style="max-width: 900px;">
+    <div [hidden]="!isLoading" class="w-100 my-auto text-center"><span class="spinner-border text-secondary" style="width: 3rem; height: 3rem;"></span></div>
+    <div [hidden]="isLoading" class="col-12 col-sm-8 px-3 py-4 mx-auto" style="max-width: 900px;">
         <div class="alert alert-secondary" *ngIf="friends != null && friends.length == 0">
             Liste vide
         </div>

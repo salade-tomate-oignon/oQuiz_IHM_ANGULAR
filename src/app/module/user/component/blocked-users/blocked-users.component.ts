@@ -12,6 +12,7 @@ import { FriendService } from '../../service/friend.service';
 export class UserBlockedUsersComponent implements OnInit {
     userId: number;
     blockedUsers: any;
+    isLoading: boolean;
 
     constructor(private friendService: FriendService,
         private authService: AuthenticationService) { }
@@ -19,6 +20,7 @@ export class UserBlockedUsersComponent implements OnInit {
     ngOnInit() {
         this.userId = this.authService.currentUserValue.id;
         this.blockedUsers = [];
+        this.isLoading = true;
 
         // Requête adressée à l'API REST
         this.friendService.getAllBlockedfriends(this.userId)
@@ -26,10 +28,12 @@ export class UserBlockedUsersComponent implements OnInit {
                 resp => {
                     // Mise-à-jour de l'affichage
                     this.blockedUsers = resp;
+                    this.isLoading = false;
                 })
             .catch(
                 // Erreur 
                 err => {
+                    this.isLoading = false;
                     if (Array.isArray(err.error)) {
                         err.error.forEach(elm => {
                             switch (elm.codeError) {
