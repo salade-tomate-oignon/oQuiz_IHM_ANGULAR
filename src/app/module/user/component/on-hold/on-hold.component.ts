@@ -14,6 +14,7 @@ import { FriendSocketService } from '../../service/friend-socket.service';
 export class UserOnHoldComponent implements OnInit, OnDestroy {
     userId: number;
     friendRequests: Array<any>;
+    isLoading: boolean;
     socketSubscription: Subscription;
 
     constructor(private friendService: FriendService,
@@ -23,6 +24,7 @@ export class UserOnHoldComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.userId = this.authService.currentUserValue.id;
         this.friendRequests = [];
+        this.isLoading = true;
 
         // Écoute des messages envoyés par le <socket server> 
         this.socketSubscription = this.friendSocketService.GetObservable().subscribe(
@@ -39,10 +41,12 @@ export class UserOnHoldComponent implements OnInit, OnDestroy {
                 resp => {
                     // Mise-à-jour de l'affichage
                     this.friendRequests = resp;
+                    this.isLoading = false;
                 })
             .catch(
                 // Erreur 
                 err => {
+                    this.isLoading = false;
                     if (Array.isArray(err.error)) {
                         err.error.forEach(elm => {
                             switch (elm.codeError) {
